@@ -31,7 +31,7 @@ RSpec.describe '/search#index', type: :feature do
       nation_members = find_nation_members('fire+nation')
 
       expect(page).to have_content('First 25 Members:')
-      within first('#member') do
+      within ("#member_#{nation_members.first[:_id]}") do
         expect(page).to have_content("Name: #{nation_members.first[:name]}")
         expect(page).to have_content("Allies: #{nation_members.first[:allies].to_sentence}")
         expect(page).to have_content("Enemies: #{nation_members.first[:enemies].to_sentence}")
@@ -40,8 +40,16 @@ RSpec.describe '/search#index', type: :feature do
 
     end
 
-    it 'for each member I see the photo if present' do
+    xit 'for each member I see the photo if present' do
+      nation_members = find_nation_members('fire+nation') 
+      # require 'pry'; binding.pry
+      within ("#member_#{nation_members[1][:_id]}") do
+        expect(page).to have_css("img[src*=#{nation_members[1][:photoUrl]}]")
+      end
 
+      within third('#member') do
+
+      end
     end
   end
 end
