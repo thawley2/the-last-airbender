@@ -1,0 +1,30 @@
+<h1><%= @nation.capitalize.gsub('+', ' ') %></h1>
+
+<h2>Number of Members: <%= @nation_members.count %>
+
+<h3>First 25 Members:</h3>
+
+<% @nation_members[0..24].each do |member| %>
+  <div id='member'>
+  <% if member[:photoUrl].present? %>
+    <%= image_tag(member[:photoUrl]) %>
+  <% end %>
+  
+  <p><b>Name: <%= member[:name] %></b><p>
+
+  <p>Allies: <% if member[:allies].present? %>
+    <%= member[:allies].to_sentence %>
+  <% else %>
+    <%= 'None' %>
+  <% end %></p>
+
+<p>Enemies: <% if member[:enemies].present? %>
+    <%= member[:enemies].to_sentence %>
+  <% else %>
+    <%= 'None' %>
+  <% end %></p>
+
+  <p>Affiliation: <%= member[:affiliation] %>
+  </div>
+  <br><br>
+<% end %>
