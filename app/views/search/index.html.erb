@@ -5,11 +5,11 @@
 <h3>First 25 Members:</h3>
 
 <% @nation_members[0..24].each do |member| %>
-  <div id='member'>
+  <div id='member_<%= member[:_id] %>'>
   <% if member[:photoUrl].present? %>
-    <%= image_tag(member[:photoUrl]) %>
+    <p id='image'><%= image_tag(member[:photoUrl], alt: "#{member[:name]}") %></p>
   <% end %>
-  
+
   <p><b>Name: <%= member[:name] %></b><p>
 
   <p>Allies: <% if member[:allies].present? %>
