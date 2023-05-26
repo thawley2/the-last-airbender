@@ -14,7 +14,7 @@ RSpec.describe '/welcom#index', type: :feature do
       
       click_button('Search For Members')
 
-      expect(current_path).to be(search_path)
+      expect(current_path).to eq(search_path)
     end
   end
 end
